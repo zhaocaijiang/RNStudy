@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import Config from 'react-native-config';
 
 type RootStackParamList = {
   Home: undefined;
@@ -20,11 +21,14 @@ function HomeScreen({navigation}: Props): React.JSX.Element {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>首页</Text>
-      <Text style={styles.description}>这是 React Navigation 路由示例</Text>
+      <Text style={styles.description}>这是 React Navigation 路由示例111</Text>
+      <Text style={styles.description}>API: {Config.API_URL}</Text>
       <View style={styles.buttonContainer}>
         <Button
           title="跳转到详情页"
-          onPress={() => navigation.navigate('Details', {message: '来自首页的问候!'})}
+          onPress={() =>
+            navigation.navigate('Details', {message: '来自首页的问候!'})
+          }
         />
       </View>
     </View>
