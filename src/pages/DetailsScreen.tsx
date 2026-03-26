@@ -30,6 +30,7 @@ function DetailsScreen({navigation, route}: Props): React.JSX.Element {
       <View style={styles.buttonContainer}>
         <Button title="返回首页" onPress={() => navigation.goBack()} />
       </View>
+
       <View style={styles.buttonContainer}>
         <Button
           title="再次跳转到详情页"

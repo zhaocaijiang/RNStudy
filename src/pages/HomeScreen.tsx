@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {View, Text, Button, StyleSheet, Image} from 'react-native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import Config from 'react-native-config';
 
@@ -23,6 +23,8 @@ function HomeScreen({navigation}: Props): React.JSX.Element {
       <Text style={styles.title}>首页</Text>
       <Text style={styles.description}>这是 React Navigation 路由示例111</Text>
       <Text style={styles.description}>API: {Config.API_URL}</Text>
+      <Image source={require('@assets/images/avatar.png')} />
+      {/* <Image source={require('../assets/images/avatar.png')} /> */}
       <View style={styles.buttonContainer}>
         <Button
           title="跳转到详情页"
