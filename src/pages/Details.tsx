@@ -1,23 +1,14 @@
 import React from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
-import type {StackNavigationProp} from '@react-navigation/stack';
 import type {RouteProp} from '@react-navigation/native';
-
-type RootStackParamList = {
-  Home: undefined;
-  Details: {message: string};
-};
-
-type DetailsScreenNavigationProp = StackNavigationProp<
+import type {
+  RootStackNavigation,
   RootStackParamList,
-  'Details'
->;
-
-type DetailsScreenRouteProp = RouteProp<RootStackParamList, 'Details'>;
+} from '@/navigation/AppNavigator';
 
 type Props = {
-  navigation: DetailsScreenNavigationProp;
-  route: DetailsScreenRouteProp;
+  navigation: RootStackNavigation;
+  route: RouteProp<RootStackParamList, 'Details'>;
 };
 
 function Details({navigation, route}: Props): React.JSX.Element {

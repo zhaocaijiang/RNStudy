@@ -7,10 +7,10 @@ type Props = {
   navigation: RootStackNavigation;
 };
 
-function Home({navigation}: Props): React.JSX.Element {
+function Found({navigation}: Props): React.JSX.Element {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>首页</Text>
+      <Text style={styles.title}>Found</Text>
       <Text style={styles.description}>这是 React Navigation 路由示例1111</Text>
       <Text style={styles.description}>API: {Config.API_URL}</Text>
       <Image source={require('@assets/images/avatar.png')} />
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default Found;
