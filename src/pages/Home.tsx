@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Button, StyleSheet, Image} from 'react-native';
-import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import type {StackNavigationProp} from '@react-navigation/stack';
 import Config from 'react-native-config';
 
 type RootStackParamList = {
@@ -8,20 +8,17 @@ type RootStackParamList = {
   Details: {message: string};
 };
 
-type HomeScreenNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
-  'Home'
->;
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 type Props = {
   navigation: HomeScreenNavigationProp;
 };
 
-function HomeScreen({navigation}: Props): React.JSX.Element {
+function Home({navigation}: Props): React.JSX.Element {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>首页</Text>
-      <Text style={styles.description}>这是 React Navigation 路由示例111</Text>
+      <Text style={styles.description}>这是 React Navigation 路由示例2222</Text>
       <Text style={styles.description}>API: {Config.API_URL}</Text>
       <Image source={require('@assets/images/avatar.png')} />
       {/* <Image source={require('../assets/images/avatar.png')} /> */}
@@ -60,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default Home;

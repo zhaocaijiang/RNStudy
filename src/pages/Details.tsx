@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
-import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import type {StackNavigationProp} from '@react-navigation/stack';
 import type {RouteProp} from '@react-navigation/native';
 
 type RootStackParamList = {
@@ -8,7 +8,7 @@ type RootStackParamList = {
   Details: {message: string};
 };
 
-type DetailsScreenNavigationProp = NativeStackNavigationProp<
+type DetailsScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Details'
 >;
@@ -20,7 +20,7 @@ type Props = {
   route: DetailsScreenRouteProp;
 };
 
-function DetailsScreen({navigation, route}: Props): React.JSX.Element {
+function Details({navigation, route}: Props): React.JSX.Element {
   const {message} = route.params;
 
   return (
@@ -65,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DetailsScreen;
+export default Details;

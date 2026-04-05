@@ -1,10 +1,13 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+} from '@react-navigation/stack';
 
-import HomeScreen from '@/pages/HomeScreen';
-// import HomeScreen from '../pages/HomeScreen';
-import DetailsScreen from '../pages/DetailsScreen';
+import Home from '@/pages/Home';
+import Details from '@/pages/Details';
+import {Platform} from 'react-native';
 
 // 定义路由参数类型
 export type RootStackParamList = {
@@ -12,32 +15,45 @@ export type RootStackParamList = {
   Details: {message: string};
 };
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator<RootStackParamList>();
 
 function AppNavigator(): React.JSX.Element {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#2196F3',
+            ...Platform.select({
+              // 根据平台设置不同的样式
+              android: {
+                elevation: 0, // 去掉 Android 的阴影
+                backgroundColor: '#2196F3',
+              },
+              ios: {
+                shadowOpacity: 0, // 去掉 iOS 的阴影
+                backgroundColor: 'red',
+              },
+            }),
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold',
           },
+          headerTitleAlign: 'center',
+          gestureEnabled: true,
+          gestureDirection: 'horizontal',
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}>
         <Stack.Screen
           name="Home"
-          component={HomeScreen}
+          component={Home}
           options={{
-            title: '首页',
+            title: '首页111',
           }}
         />
         <Stack.Screen
           name="Details"
-          component={DetailsScreen}
+          component={Details}
           options={() => ({
             title: '详情页',
           })}
