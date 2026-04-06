@@ -7,13 +7,15 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
 import AppNavigator from './src/navigation/AppNavigator';
+import {Provider} from 'react-redux';
+import store from '@/config/dva';
 
 function App(): React.JSX.Element {
   return (
-    <>
+    <Provider store={store}>
       <StatusBar barStyle="light-content" backgroundColor="#2196F3" />
       <AppNavigator />
-    </>
+    </Provider>
   );
 }
 

@@ -7,10 +7,10 @@ import Account from '@/pages/Account';
 import {Platform} from 'react-native';
 
 type BottomTabParamList = {
-  Home: undefined;
-  Listen: undefined;
-  Found: undefined;
-  Account: undefined;
+  TabHome: undefined;
+  TabListen: undefined;
+  TabFound: undefined;
+  TabAccount: undefined;
 };
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
@@ -40,22 +40,22 @@ function BottomTabs(): React.JSX.Element {
         headerTitleAlign: 'center',
       }}>
       <Tab.Screen
-        name="Home"
+        name="TabHome"
         component={Home}
         options={{title: '首页', tabBarLabel: '首页'}}
       />
       <Tab.Screen
-        name="Listen"
+        name="TabListen"
         component={Listen}
         options={{title: '听书', tabBarLabel: '听书'}}
       />
       <Tab.Screen
-        name="Found"
+        name="TabFound"
         component={Found}
         options={{title: '发现', tabBarLabel: '发现'}}
       />
       <Tab.Screen
-        name="Account"
+        name="TabAccount"
         component={Account}
         options={{title: '我的', tabBarLabel: '我的'}}
       />
