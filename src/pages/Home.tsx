@@ -4,6 +4,7 @@ import Config from 'react-native-config';
 import type {RootStackNavigation} from '@/navigation/AppNavigator';
 import {connect, ConnectedProps} from 'react-redux';
 import {RootState} from '@/models';
+import IconFont from '@assets/iconfont';
 
 const connector = connect(({home ,loading}: RootState) => ({
   num: home.num,
@@ -24,6 +25,7 @@ function Home({navigation, num, dispatch, loading}: Props): React.JSX.Element {
       <Text style={styles.description}> {loading ? '正在计算中...' : '计算完成'}</Text>
       <Text style={styles.description}>API: {Config.API_URL}</Text>
       <Image source={require('@assets/images/avatar.png')} />
+      <IconFont name="toutiao-shouye" size={30} color="#f86442" />
       {/* <Image source={require('../assets/images/avatar.png')} /> */}
       <View style={styles.buttonContainer}>
         <View style={styles.addButton}>

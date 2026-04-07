@@ -5,6 +5,7 @@ import Listen from '@/pages/Listen';
 import Found from '@/pages/Found';
 import Account from '@/pages/Account';
 import {Platform} from 'react-native';
+import IconFont from '@assets/iconfont';
 
 type BottomTabParamList = {
   TabHome: undefined;
@@ -42,22 +43,46 @@ function BottomTabs(): React.JSX.Element {
       <Tab.Screen
         name="TabHome"
         component={Home}
-        options={{title: '首页', tabBarLabel: '首页'}}
+        options={{
+          title: '首页',
+          tabBarLabel: '首页',
+          tabBarIcon: ({color, size}) => (
+            <IconFont name="toutiao-shouye" size={size} color={color} />
+          ),
+        }}
       />
       <Tab.Screen
         name="TabListen"
         component={Listen}
-        options={{title: '听书', tabBarLabel: '听书'}}
+        options={{
+          title: '听书',
+          tabBarLabel: '听书',
+          tabBarIcon: ({color, size}) => (
+            <IconFont name="toutiao-yuedu" size={size} color={color} />
+          ),
+        }}
       />
       <Tab.Screen
         name="TabFound"
         component={Found}
-        options={{title: '发现', tabBarLabel: '发现'}}
+        options={{
+          title: '发现',
+          tabBarLabel: '发现',
+          tabBarIcon: ({color, size}) => (
+            <IconFont name="toutiao-sousuo" size={size} color={color} />
+          ),
+        }}
       />
       <Tab.Screen
         name="TabAccount"
         component={Account}
-        options={{title: '我的', tabBarLabel: '我的'}}
+        options={{
+          title: '我的',
+          tabBarLabel: '我的',
+          tabBarIcon: ({color, size}) => (
+            <IconFont name="toutiao-wode" size={size} color={color} />
+          ),
+        }}
       />
     </Tab.Navigator>
   );
