@@ -13,7 +13,11 @@ import store from '@/config/dva';
 function App(): React.JSX.Element {
   return (
     <Provider store={store}>
-      <StatusBar barStyle="light-content" backgroundColor="#2196F3" />
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="transparent"
+        translucent
+      />
       <AppNavigator />
     </Provider>
   );

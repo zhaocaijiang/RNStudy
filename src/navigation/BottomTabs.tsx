@@ -1,14 +1,14 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Home from '@/pages/Home';
+import HomeTabs from '@/navigation/HomeTabs';
 import Listen from '@/pages/Listen';
 import Found from '@/pages/Found';
 import Account from '@/pages/Account';
-import {Platform} from 'react-native';
+import {Platform, StatusBar} from 'react-native';
 import IconFont from '@assets/iconfont';
 
 type BottomTabParamList = {
-  TabHome: undefined;
+  HomeTabs: undefined;
   TabListen: undefined;
   TabFound: undefined;
   TabAccount: undefined;
@@ -26,7 +26,7 @@ function BottomTabs(): React.JSX.Element {
             // 根据平台设置不同的样式
             android: {
               elevation: 0, // 去掉 Android 的阴影
-              backgroundColor: '#2196F3',
+              backgroundColor: 'red',
             },
             ios: {
               shadowOpacity: 0, // 去掉 iOS 的阴影
@@ -34,15 +34,16 @@ function BottomTabs(): React.JSX.Element {
             },
           }),
         },
-        headerTintColor: '#fff',
+        headerTintColor: '#333',
         headerTitleStyle: {
           fontWeight: 'bold',
         },
         headerTitleAlign: 'center',
+        headerStatusBarHeight: StatusBar.currentHeight, // 避免从最顶端加载下来
       }}>
       <Tab.Screen
-        name="TabHome"
-        component={Home}
+        name="HomeTabs"
+        component={HomeTabs}
         options={{
           title: '首页',
           tabBarLabel: '首页',
