@@ -21,7 +21,6 @@ function Home({navigation, num, dispatch, loading}: Props): React.JSX.Element {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>首页{num}</Text>
-      <Text style={styles.description}>state: {num}</Text>
       <Text style={styles.description}> {loading ? '正在计算中...' : '计算完成'}</Text>
       <Text style={styles.description}>API: {Config.API_URL}</Text>
       <Image source={require('@assets/images/avatar.png')} />
