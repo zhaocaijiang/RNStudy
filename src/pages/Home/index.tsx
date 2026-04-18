@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, Button, StyleSheet, Image} from 'react-native';
-import Config from 'react-native-config';
 import type {RootStackNavigation} from '@/navigation/AppNavigator';
 import {connect, ConnectedProps} from 'react-redux';
 import {RootState} from '@/models';
@@ -9,6 +8,7 @@ import Carousel from './Carousel';
 
 const connector = connect(({home, loading}: RootState) => ({
   num: home.num,
+  carouselList: home.carouselList,
   loading: loading.effects['home/asyncAdd'],
 }));
 
@@ -18,15 +18,17 @@ type Props = ModelState & {
   navigation: RootStackNavigation;
 };
 
-function Home({navigation, num, dispatch, loading}: Props): React.JSX.Element {
+function Home({navigation, num, dispatch, loading ,carouselList}: Props): React.JSX.Element {
+
   return (
     <View style={styles.container}>
       <Carousel
-        data={[
-          'https://cdn.pixabay.com/photo/2026/04/14/11/47/geralt-elderly-10226113_640.jpg',
-          'https://cdn.pixabay.com/photo/2026/04/10/11/08/geralt-relaxation-10219128_1280.jpg',
-          'https://cdn.pixabay.com/photo/2026/04/03/07/45/geralt-students-10206633_1280.jpg',
-        ]}
+        // data={[
+        //   'https://cdn.pixabay.com/photo/2026/04/14/11/47/geralt-elderly-10226113_640.jpg',
+        //   'https://cdn.pixabay.com/photo/2026/04/10/11/08/geralt-relaxation-10219128_1280.jpg',
+        //   'https://cdn.pixabay.com/photo/2026/04/03/07/45/geralt-students-10206633_1280.jpg',
+        // ]}
+        data={carouselList}
       />
       <View style={styles.buttonContainer}>
         <Button

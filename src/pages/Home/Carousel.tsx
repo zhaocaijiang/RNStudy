@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import {
   FlatList,
   Image,
@@ -10,21 +10,30 @@ import {
   View,
 } from 'react-native';
 import {viewportWidth, wp} from '@/utils';
+import {connect, ConnectedProps} from 'react-redux';
+import {RootState} from '@/models';
 
 const SCREEN_WIDTH = viewportWidth;
 const ITEM_WIDTH = SCREEN_WIDTH;
 const IMAGE_HEIGHT = wp(45);
 
-interface CarouselProps {
+
+const connector = connect(({home, loading}: RootState) => ({
+  // carouselList: home.carouselList,
+}));
+type ModelState = ConnectedProps<typeof connector>;
+
+type Props = ModelState & {
   data: string[];
   autoPlay?: boolean;
   autoPlayInterval?: number;
 }
 
-const Carousel: React.FC<CarouselProps> = ({
+const Carousel: React.FC<Props> = ({
   data,
   autoPlay = true,
   autoPlayInterval = 3000,
+  dispatch,
 }) => {
   const flatListRef = useRef<FlatList>(null);
   const currentIndex = useRef(0);
@@ -38,9 +47,11 @@ const Carousel: React.FC<CarouselProps> = ({
     stopAutoPlay();
     timerRef.current = setInterval(() => {
       const next = (currentIndex.current + 1) % data.length;
-      currentIndex.current = next;
-      setActiveIndex(next);
-      flatListRef.current?.scrollToIndex({index: next, animated: true});
+      if (next < data.length) {
+        currentIndex.current = next;
+        setActiveIndex(next);
+        flatListRef.current?.scrollToIndex({index: next, animated: true});
+      }
     }, autoPlayInterval);
   };
 
@@ -71,11 +82,22 @@ const Carousel: React.FC<CarouselProps> = ({
     startAutoPlay();
   };
 
-  React.useEffect(() => {
-    startAutoPlay();
-    return () => stopAutoPlay();
+  useEffect(() => {
+    dispatch({
+      type: 'home/getCarouselList',
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (data.length > 0) {
+      currentIndex.current = 0;
+      setActiveIndex(0);
+      startAutoPlay();
+    }
+    return () => stopAutoPlay();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data.length]);
 
   const renderItem = ({item}: {item: string}) => (
     <View style={styles.itemContainer}>
@@ -150,4 +172,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Carousel;
+export default connector(Carousel);
