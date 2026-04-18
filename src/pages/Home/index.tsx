@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet, Image} from 'react-native';
+import {View, Text, Button, StyleSheet, Image, ScrollView} from 'react-native';
 import type {RootStackNavigation} from '@/navigation/AppNavigator';
 import {connect, ConnectedProps} from 'react-redux';
 import {RootState} from '@/models';
 import IconFont from '@assets/iconfont';
 import Carousel from './Carousel';
+import Guess from './Guess';
 
 const connector = connect(({home, loading}: RootState) => ({
   num: home.num,
@@ -21,7 +22,7 @@ type Props = ModelState & {
 function Home({navigation, num, dispatch, loading ,carouselList}: Props): React.JSX.Element {
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <Carousel
         // data={[
         //   'https://cdn.pixabay.com/photo/2026/04/14/11/47/geralt-elderly-10226113_640.jpg',
@@ -30,24 +31,17 @@ function Home({navigation, num, dispatch, loading ,carouselList}: Props): React.
         // ]}
         data={carouselList}
       />
-      <View style={styles.buttonContainer}>
-        <Button
-          title="跳转到详情页"
-          onPress={() =>
-            navigation.navigate('Details', {message: '来自首页的问候!'})
-          }
-        />
-      </View>
-    </View>
+      <Guess />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  contentContainer: {
     paddingTop: 16,
   },
   title: {

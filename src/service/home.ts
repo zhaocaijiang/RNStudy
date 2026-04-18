@@ -5,4 +5,10 @@ export function getCarouselList() {
         method: 'get',
     });
 }
+export function getGuessList() {
+    return request({
+        url: 'mock/10/guess',
+        method: 'get',
+    });
+}
 
